@@ -1,6 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include "fcasino.h"
 using namespace std;
+
+        int leerCreditos,creditos;
+        char opcion;
 
 void mainmenu (){
     cout<<"\n-------------------------------------------\n"<<"|           Bienvenido al UCAsino         |\n"<<"-------------------------------------------";
@@ -31,3 +35,61 @@ char ftragap (){
     return 'a'+ rand()%3;
 }
 
+void menuRuleta (){
+        cout<<"==============================================" <<endl
+            <<"|      BIENVENIDO A LA RULETA EXTREMA        |"  <<endl
+            <<"| !! APUESTA TODO A ROJO O TODO AL NEGRO !!  |"  <<endl 
+            <<"|                                            |" <<endl
+            <<"|    SI GANAS ES UN X5 DE TU APUESTA !!      |"   <<endl
+            <<"==============================================" <<endl <<endl;
+}
+
+void avisoCreditos (){
+        cout<<"==============================================" <<endl
+            <<"|                 IMPORTANTE                 |"   <<endl
+            <<"|                                            |" <<endl
+            <<"|      Recuerde que la cantidad minima       |"  <<endl
+            <<"|       para apostar es de 5 creditos        |"  <<endl 
+            <<"|                     !!!                    |" <<endl
+            <<"==============================================" <<endl <<endl;
+}
+
+int fTypeCreditos (){ 
+    ofstream archivo;
+    archivo.open("CreditosCasino.txt");
+
+        if (archivo.is_open ()){
+            archivo << creditos <<endl;
+
+            archivo.close();
+        }
+        else{
+            cout<<"Error al abrir el archivo";
+        }
+}
+
+int fReadCreditos (){ 
+    ifstream archivo;
+    archivo.open("CreditosCasino.txt");
+
+        if (archivo.is_open ()){
+
+                if (archivo >> leerCreditos) {
+                    cout << "Creditos totales: " << leerCreditos <<endl;
+                } 
+                else {
+                cout << "El archivo esta vacio o no se pudo leer." <<endl;
+                archivo.close();
+                }
+    }
+        else{
+            cout<<"Error al abrir el archivo";
+        }
+}
+
+void fContinuar (){
+        cout<<"Si desea continuar, presione S" <<endl
+        <<"Si desea salir de este juego presione N"<<endl
+        <<"Ingrese una opcion: ";
+    cin>>opcion;
+}

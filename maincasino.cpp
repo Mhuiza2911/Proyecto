@@ -3,8 +3,12 @@
 #include <cstdlib>
 #include <ctime>
 using namespace std;
-int opc,creditos=100;
 string resp,res;
+      
+                    //Variables
+            int numerosRojos [18] = {1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35};
+            int apuesta, color, numeroGanador;
+            string colorGanador;
 
 int main (){
     srand(time(NULL));
@@ -14,7 +18,7 @@ int main (){
     <<endl<<"Ahora tienes: "<<creditos<<" creditos"<<endl;
     cin>>opc;
     switch (opc){
-        case 1:
+        case 1:{
         int dado1,dado2;
         do{
         int suma,apuesta,op;
@@ -25,13 +29,14 @@ int main (){
         cout<<"¿Cuanto quieres apostar?\n"<<"Solo puedes apostar de 5 creditos en adelante\n";
         cin>>apuesta;
         if (apuesta<5){
-        cout<<"No puedes apostar menos de 5 creditos apuesta mas\n";
+         avisoCreditos ();
         }
         else if (creditos<apuesta){
-        cout<<"No puedes apostar mas de los creditos de los que tienes\n";
-        apuesta=1;
-        }
-        }while(apuesta<5);
+                    cout<< "====================================" << endl
+                        << "|     ERROR: Saldo insuficiente    |" << endl
+                        << "====================================" << endl;
+                }
+        }while(apuesta<=5);
         cout<<"¿Como quieres apostar?\n"<<"1- Si toca 7 en el primer tiro\n"<<"o\n"<<"2- Si te toca los mismos dados del primer tiro en el segundo antes que el 7  \n";
         cin>>op;
      switch (op){
@@ -39,20 +44,23 @@ int main (){
          if(suma==7){
             cout<<"Ganaste, tus dados dieron: "<<fdado(dado1,dado2)<<endl;
             creditos=apuesta+creditos;
+            fTypeCreditos ();
          }
          else {
             cout<<"Perdiste, tus dados dieron: "<<fdado(dado1,dado2)<<endl;
             creditos=creditos-apuesta;
+            fTypeCreditos ();
 
          }
         break;
-        case 2:
-         int punto;
+      }
+        case 2:{int punto;
          suma=fdado(dado1,dado2);
          cout<<"Tu primer tiro es de: "<<suma<<endl; 
          if (suma==2||suma==3||suma==12){
             cout<<"Craps, perdiste tus dados fueron: "<<fdado(dado1,dado2)<<endl;
             creditos=creditos-apuesta;
+            fTypeCreditos ();
             break;
          }
          else if(suma==7){
@@ -68,11 +76,13 @@ int main (){
          if(suma==punto){
             cout<<"Ganaste"<<endl;
             creditos=creditos+apuesta;
+            fTypeCreditos ();
             break;
          }
          else if(suma==7) {
             cout<<"Perdiste"<<endl;
             creditos=creditos-apuesta;
+            fTypeCreditos ();
             break;
          }
          break;
@@ -150,9 +160,100 @@ int main (){
        cin>>resp;
        }while(resp=="si"||resp=="Si");
         break;
-        case 3:
+      }
+         
+        case 3:{
+
+               srand(time(0));
+               menuRuleta ();
+               fContinuar ();
+
+
+               do{
+                  if (opcion == 's' || opcion == 'S' ){
+                        avisoCreditos ();
+                        fReadCreditos();
+                        creditos = leerCreditos;
+                        cout<<"Ingrese la cantidad que desea apostar: ";
+                        cin>>apuesta;
+
+                           if (creditos<apuesta){
+                              cout<< "====================================" << endl
+                                    << "|     ERROR: Saldo insuficiente    |" << endl
+                                    << "====================================" << endl;
+                           }
+
+                           else if (apuesta >= 5){
+                              cout<<"Por que color apostaras?" <<endl
+                                    <<"  0) Negro " <<endl
+                                    <<"  1) Rojo " <<endl
+                                    <<"Ingrese su eleccion: ";
+                              cin>>color;
+
+                              numeroGanador = rand() % 36;     //se utilizo IA en esta linea
+
+                                          cout<<"====================================" <<endl
+                                                <<"    El numero ganador es el "<<numeroGanador <<endl
+                                                <<"====================================" <<endl; 
+
+                                       if (numeroGanador==0){
+                                          colorGanador = "Verde";
+                                          cout<<"====================================" <<endl
+                                                <<"|   El color ganador es el VERDE   |" <<endl
+                                                <<"|         Hoy gano la casa         |" <<endl
+                                                <<"|           PERDISTE :(            |" <<endl
+                                                <<"====================================" <<endl;
+                                          
+                                          creditos = creditos - apuesta;
+                                          cout<<"Sus creditos totales son: " <<creditos <<endl;
+                                       }
+                                          //Este else fue generado por IA y sirve para recorrer todo el for hasta encontrar un rojo y terminarlo cuando lo encuentre
+                                       else {
+                                          colorGanador = "Negro";
+                                          for (int i = 0; i < 18 ; i++){
+                                                   if (numeroGanador == numerosRojos[i]){
+                                                      colorGanador = "Rojo";
+                                                      break;
+                                                   }
+                                          }
+                                          cout<<"====================================" <<endl
+                                                <<"    El color ganador es el "<<colorGanador <<endl
+                                                <<"====================================" <<endl;   
+                                       }
+
+                                       if ((color == 0 && colorGanador == "Negro") || (color == 1 && colorGanador == "Rojo")){
+                                          cout<<"=================================" <<endl
+                                                <<"|                               |" <<endl
+                                                <<"|         !! GANASTE !!         |" <<endl
+                                                <<"|                               |" <<endl
+                                                <<"=================================" <<endl;
+                                          creditos = creditos + (apuesta*5);
+                                          cout<<"Sus creditos totales son: " <<creditos <<endl;
+                                          fTypeCreditos();
+                                       }
+
+                                       else{ 
+                                          cout<<"=================================" <<endl
+                                                <<"|                               |" <<endl
+                                                <<"|        !! PERDISTE !!         |" <<endl
+                                                <<"|                               |" <<endl
+                                                <<"=================================" <<endl;
+                                          creditos = creditos - apuesta;
+                                          cout<<"Sus creditos totales son: " <<creditos <<endl;
+                                          fTypeCreditos();
+                                       }
+                                       
+                           }
+
+                           
+                  }
+                  
+                  fContinuar ();
+
+               } while (opcion== 's'|| opcion == 'S');
 
         break;
+         }
         case 4:
 
         break;
