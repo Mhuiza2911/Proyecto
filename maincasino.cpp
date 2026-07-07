@@ -5,10 +5,8 @@
 using namespace std;
 string resp,res;
       
-                    //Variables
-            int numerosRojos [18] = {1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35};
-            int apuesta, color, numeroGanador;
-            string colorGanador;
+        int leerCreditos,creditos,opc;
+        char opcion;
 
 int main (){
     srand(time(NULL));
@@ -18,7 +16,7 @@ int main (){
     <<endl<<"Ahora tienes: "<<creditos<<" creditos"<<endl;
     cin>>opc;
     switch (opc){
-        case 1:{
+        case 1:
         int dado1,dado2;
         do{
         int suma,apuesta,op;
@@ -29,7 +27,7 @@ int main (){
         cout<<"¿Cuanto quieres apostar?\n"<<"Solo puedes apostar de 5 creditos en adelante\n";
         cin>>apuesta;
         if (apuesta<5){
-         avisoCreditos ();
+         void avisoCreditos ();
         }
         else if (creditos<apuesta){
                     cout<< "====================================" << endl
@@ -44,23 +42,23 @@ int main (){
          if(suma==7){
             cout<<"Ganaste, tus dados dieron: "<<fdado(dado1,dado2)<<endl;
             creditos=apuesta+creditos;
-            fTypeCreditos ();
+            int fTypeCreditos ();
          }
          else {
             cout<<"Perdiste, tus dados dieron: "<<fdado(dado1,dado2)<<endl;
             creditos=creditos-apuesta;
-            fTypeCreditos ();
+            int fTypeCreditos ();
 
          }
         break;
-      }
-        case 2:{int punto;
+        case 2:
+         int punto;
          suma=fdado(dado1,dado2);
          cout<<"Tu primer tiro es de: "<<suma<<endl; 
          if (suma==2||suma==3||suma==12){
             cout<<"Craps, perdiste tus dados fueron: "<<fdado(dado1,dado2)<<endl;
             creditos=creditos-apuesta;
-            fTypeCreditos ();
+            int fTypeCreditos ();
             break;
          }
          else if(suma==7){
@@ -76,13 +74,13 @@ int main (){
          if(suma==punto){
             cout<<"Ganaste"<<endl;
             creditos=creditos+apuesta;
-            fTypeCreditos ();
+            int fTypeCreditos ();
             break;
          }
          else if(suma==7) {
             cout<<"Perdiste"<<endl;
             creditos=creditos-apuesta;
-            fTypeCreditos ();
+            int fTypeCreditos ();
             break;
          }
          break;
@@ -160,9 +158,11 @@ int main (){
        cin>>resp;
        }while(resp=="si"||resp=="Si");
         break;
-      }
-         
-        case 3:{
+        case 3:
+            //Variables
+            int numerosRojos [18] = {1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35};
+            int apuesta, color, numeroGanador;
+            string colorGanador;
 
                srand(time(0));
                menuRuleta ();
@@ -253,7 +253,6 @@ int main (){
                } while (opcion== 's'|| opcion == 'S');
 
         break;
-         }
         case 4:
 
         break;
