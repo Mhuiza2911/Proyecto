@@ -8,7 +8,7 @@ int main (){
     cin>>opc;
     switch (opc){
         case 1:
-
+        
         break;
         case 2:
 
