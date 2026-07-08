@@ -5,7 +5,7 @@
 using namespace std;
 string resp,res;
       
-        int leerCreditos,creditos=fReadCreditos (),opc;
+        int leerCreditos,creditos,opc;
         char opcion;
 
 int main (){
@@ -27,7 +27,7 @@ int main (){
         cout<<"¿Cuanto quieres apostar?\n"<<"Solo puedes apostar de 5 creditos en adelante\n";
         cin>>apuesta;
         if (apuesta<5){
-        avisoCreditos ();
+         void avisoCreditos ();
         }
         else if (creditos<apuesta){
                     cout<< "====================================" << endl
@@ -42,14 +42,12 @@ int main (){
          if(suma==7){
             cout<<"Ganaste, tus dados dieron: "<<fdado(dado1,dado2)<<endl;
             creditos=apuesta+creditos;
-            fTypeCreditos (creditos);
-            
+            int fTypeCreditos ();
          }
          else {
             cout<<"Perdiste, tus dados dieron: "<<fdado(dado1,dado2)<<endl;
             creditos=creditos-apuesta;
-            fTypeCreditos (creditos);
-            
+            int fTypeCreditos ();
 
          }
         break;
@@ -60,14 +58,12 @@ int main (){
          if (suma==2||suma==3||suma==12){
             cout<<"Craps, perdiste tus dados fueron: "<<fdado(dado1,dado2)<<endl;
             creditos=creditos-apuesta;
-            fTypeCreditos (creditos);
-            
+            int fTypeCreditos ();
             break;
          }
          else if(suma==7){
             cout<<"Perdiste, tu apuesta era que no tocara el 7";
             creditos-=apuesta;
-            fTypeCreditos (creditos);
             break;
          }
          punto=suma;
@@ -78,15 +74,13 @@ int main (){
          if(suma==punto){
             cout<<"Ganaste"<<endl;
             creditos=creditos+apuesta;
-            fTypeCreditos (creditos);
-            
+            int fTypeCreditos ();
             break;
          }
          else if(suma==7) {
             cout<<"Perdiste"<<endl;
             creditos=creditos-apuesta;
-            fTypeCreditos (creditos);
-            
+            int fTypeCreditos ();
             break;
          }
          break;
@@ -122,70 +116,64 @@ int main (){
         if (s1=='a'&&s2=='a'&&s3=='a'){
         cout<<" Ganaste\n";
         creditos+=900;
-        fTypeCreditos (creditos);
        }
         else if (s1=='b'&&s2=='b'&&s3=='b'){
         cout<<" Ganaste\n";
         creditos+=450;
-        fTypeCreditos (creditos);
        }
         else if (s1=='c'&&s2=='c'&&s3=='c'){
        cout<<" Ganaste\n";
        creditos+=150;
-       fTypeCreditos (creditos);
        }
        else if (s1=='a'&&s2=='a'&&s3=='b'||s1=='a'&&s2=='b'&&s3=='a'||s1=='b'&&s2=='a'&&s3=='a'){
        cout<<" Ganaste\n";
        creditos+=750;
-       fTypeCreditos (creditos);
        }
        else if (s1=='a'&&s2=='a'&&s3=='c'||s1=='a'&&s2=='c'&&s3=='a'||s1=='c'&&s2=='a'&&s3=='a'){
        cout<<" Ganaste\n";
        creditos+=650;
-       fTypeCreditos (creditos);
        }
        else if (s1=='b'&&s2=='b'&&s3=='a'||s1=='b'&&s2=='a'&&s3=='b'||s1=='a'&&s2=='b'&&s3=='b'){
        cout<<" Ganaste\n";
        creditos+=600;
-       fTypeCreditos (creditos);
        }
        else if (s1=='b'&&s2=='b'&&s3=='c'||s1=='b'&&s2=='c'&&s3=='b'||s1=='c'&&s2=='b'&&s3=='b'){
        cout<<" Ganaste\n";
        creditos+=350;
-       fTypeCreditos (creditos);
        }
        else if (s1=='c'&&s2=='c'&&s3=='a'||s1=='c'&&s2=='a'&&s3=='c'||s1=='a'&&s2=='c'&&s3=='c'){
        cout<<" Ganaste\n";
        creditos+=400;
-       fTypeCreditos (creditos);
        }
        else if (s1=='c'&&s2=='c'&&s3=='b'||s1=='c'&&s2=='b'&&s3=='c'||s1=='b'&&s2=='c'&&s3=='c'){
        cout<<" Ganaste\n";
        creditos+=250;
-       fTypeCreditos (creditos);
        }
        else {
        cout<<" perdiste\n";
        creditos-=15;
-       fTypeCreditos (creditos);
        }
        cout<<"Tienes: "<<creditos<<" Creditos"<<endl;
        cout<<"Quieres volver a jugar?";
        cin>>resp;
        }while(resp=="si"||resp=="Si");
         break;
-      case 3:{
+        case 3:
             //Variables
-       int numerosRojos [18] = {1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35};
-       int apuesta, color, numeroGanador;
-       string colorGanador;
-       menuRuleta ();
-       
+            int numerosRojos [18] = {1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35};
+            int apuesta, color, numeroGanador;
+            string colorGanador;
+
+               srand(time(0));
+               menuRuleta ();
+               fContinuar ();
 
 
-               
+               do{
                   if (opcion == 's' || opcion == 'S' ){
                         avisoCreditos ();
+                        fReadCreditos();
+                        creditos = leerCreditos;
                         cout<<"Ingrese la cantidad que desea apostar: ";
                         cin>>apuesta;
 
@@ -217,7 +205,6 @@ int main (){
                                                 <<"====================================" <<endl;
                                           
                                           creditos = creditos - apuesta;
-                                          fTypeCreditos (creditos);
                                           cout<<"Sus creditos totales son: " <<creditos <<endl;
                                        }
                                           //Este else fue generado por IA y sirve para recorrer todo el for hasta encontrar un rojo y terminarlo cuando lo encuentre
@@ -241,9 +228,8 @@ int main (){
                                                 <<"|                               |" <<endl
                                                 <<"=================================" <<endl;
                                           creditos = creditos + (apuesta*5);
-                                          fTypeCreditos (creditos);
                                           cout<<"Sus creditos totales son: " <<creditos <<endl;
-                                          
+                                          fTypeCreditos();
                                        }
 
                                        else{ 
@@ -253,9 +239,8 @@ int main (){
                                                 <<"|                               |" <<endl
                                                 <<"=================================" <<endl;
                                           creditos = creditos - apuesta;
-                                          fTypeCreditos (creditos);
                                           cout<<"Sus creditos totales son: " <<creditos <<endl;
-                                       
+                                          fTypeCreditos();
                                        }
                                        
                            }
@@ -264,9 +249,10 @@ int main (){
                   }
                   
                   fContinuar ();
-                  cin>>opcion;
 
-        break;}
+               } while (opcion== 's'|| opcion == 'S');
+
+        break;
         case 4:
 
         break;

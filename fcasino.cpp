@@ -3,6 +3,8 @@
 #include "fcasino.h"
 using namespace std;
 
+        int leerCreditos,creditos;
+        char opcion;
 
 void mainmenu (){
     cout<<"\n-------------------------------------------\n"<<"|           Bienvenido al UCAsino         |\n"<<"-------------------------------------------";
@@ -52,12 +54,12 @@ void avisoCreditos (){
             <<"==============================================" <<endl <<endl;
 }
 
-void fTypeCreditos (int a){ 
+int fTypeCreditos (){ 
     ofstream archivo;
     archivo.open("CreditosCasino.txt");
 
         if (archivo.is_open ()){
-            archivo << a <<endl;
+            archivo << creditos <<endl;
 
             archivo.close();
         }
@@ -69,20 +71,25 @@ void fTypeCreditos (int a){
 int fReadCreditos (){ 
     ifstream archivo;
     archivo.open("CreditosCasino.txt");
-     int a=100;
 
         if (archivo.is_open ()){
-        archivo>>a;
-        archivo.close();
+
+                if (archivo >> leerCreditos) {
+                    cout << "Creditos totales: " << leerCreditos <<endl;
+                } 
+                else {
+                cout << "El archivo esta vacio o no se pudo leer." <<endl;
+                archivo.close();
+                }
     }
         else{
             cout<<"Error al abrir el archivo";
         }
-        return a;
 }
 
 void fContinuar (){
         cout<<"Si desea continuar, presione S" <<endl
         <<"Si desea salir de este juego presione N"<<endl
         <<"Ingrese una opcion: ";
+    cin>>opcion;
 }

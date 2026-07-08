@@ -13,7 +13,7 @@ char ftragap ();
 //Portotipos globables
         void avisoCreditos ();
         int fReadCreditos ();
-        void fTypeCreditos (int a);
+        int fTypeCreditos ();
         void fContinuar ();
 
 
