@@ -1,6 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include "fcasino.h"
 using namespace std;
+
 
 void mainmenu (){
     cout<<"\n-------------------------------------------\n"<<"|           Bienvenido al UCAsino         |\n"<<"-------------------------------------------";
@@ -31,3 +33,56 @@ char ftragap (){
     return 'a'+ rand()%3;
 }
 
+void menuRuleta (){
+        cout<<"==============================================" <<endl
+            <<"|      BIENVENIDO A LA RULETA EXTREMA        |"  <<endl
+            <<"| !! APUESTA TODO A ROJO O TODO AL NEGRO !!  |"  <<endl 
+            <<"|                                            |" <<endl
+            <<"|    SI GANAS ES UN X5 DE TU APUESTA !!      |"   <<endl
+            <<"==============================================" <<endl <<endl;
+}
+
+void avisoCreditos (){
+        cout<<"==============================================" <<endl
+            <<"|                 IMPORTANTE                 |"   <<endl
+            <<"|                                            |" <<endl
+            <<"|      Recuerde que la cantidad minima       |"  <<endl
+            <<"|       para apostar es de 5 creditos        |"  <<endl 
+            <<"|                     !!!                    |" <<endl
+            <<"==============================================" <<endl <<endl;
+}
+
+void fTypeCreditos (int a){ 
+    ofstream archivo;
+    archivo.open("CreditosCasino.txt");
+
+        if (archivo.is_open ()){
+            archivo << a <<endl;
+
+            archivo.close();
+        }
+        else{
+            cout<<"Error al abrir el archivo";
+        }
+}
+
+int fReadCreditos (){ 
+    ifstream archivo;
+    archivo.open("CreditosCasino.txt");
+     int a=100;
+
+        if (archivo.is_open ()){
+        archivo>>a;
+        archivo.close();
+    }
+        else{
+            cout<<"Error al abrir el archivo";
+        }
+        return a;
+}
+
+void fContinuar (){
+        cout<<"Si desea continuar, presione S" <<endl
+        <<"Si desea salir de este juego presione N"<<endl
+        <<"Ingrese una opcion: ";
+}

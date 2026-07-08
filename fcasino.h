@@ -7,8 +7,14 @@ int fdado (int a, int b);
 void tragamenu ();
 char ftragap ();
 
+//Prototipos de ruleta
+        void menuRuleta ();
 
-
+//Portotipos globables
+        void avisoCreditos ();
+        int fReadCreditos ();
+        void fTypeCreditos (int a);
+        void fContinuar ();
 
 
 
