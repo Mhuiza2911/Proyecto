@@ -86,3 +86,17 @@ void fContinuar (){
         <<"Si desea salir de este juego presione N"<<endl
         <<"Ingrese una opcion: ";
 }
+void fganaste (){
+    cout<<"=================================" <<endl
+        <<"|                               |" <<endl
+        <<"|         !! GANASTE !!         |" <<endl
+        <<"|                               |" <<endl
+        <<"=================================" <<endl;
+}
+void fperdiste  (){
+    cout<<"=================================" <<endl
+        <<"|                               |" <<endl
+        <<"|        !! PERDISTE !!         |" <<endl
+        <<"|                               |" <<endl
+        <<"=================================" <<endl;
+}

@@ -15,8 +15,8 @@ char ftragap ();
         int fReadCreditos ();
         void fTypeCreditos (int a);
         void fContinuar ();
-
-
+        void fganaste ();
+        void fperdiste ();
 
 
 #endif
