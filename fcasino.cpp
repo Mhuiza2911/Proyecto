@@ -21,7 +21,8 @@ void crapsmenu (){
 }
 void tragamenu (){
     cout<<"________________________________________\n"<<"| Bienvenido a la maquina tragamonedas |\n"<<"----------------------------------------\n"
-    <<"";
+    <<"Cada letra tiene un valor y depende de cuantas toquen esa cantidad ganaras\n"
+    <<"a= 300 creditos"<<endl<<"b= 150 creditos"<<endl<<"c= 50 creditos\n"<<endl;
 }
 int fdado (int a, int b){
     a=rand() %6+1;

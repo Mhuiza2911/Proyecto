@@ -175,6 +175,7 @@ int main (){
         break;
         case 2:
         do{
+         tragamenu ();
          char s1,s2,s3;
          int moneda;
         do{
