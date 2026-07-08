@@ -169,7 +169,7 @@ int main (){
          }
          }
          cout<<"Tienes: "<<creditos<<" Creditos"<<endl;
-         cout<<"Quieres volver a jugar?";
+         cout<<"Quieres volver a jugar?" <<endl;
          cin>>resp;
          }while(resp=="si"||resp=="Si");
         break;
@@ -252,7 +252,7 @@ int main (){
        fTypeCreditos (creditos);
        }
        cout<<"Tienes: "<<creditos<<" Creditos"<<endl;
-       cout<<"Quieres volver a jugar?";
+       cout<<"Quieres volver a jugar?" <<endl;
        cin>>resp;
        }while(resp=="si"||resp=="Si");
         break;
@@ -338,7 +338,7 @@ int main (){
         break;}
         case 4:
         creditos=creditos+100;
-        cout<<"Se te recargaron: "<<creditos<<" creditos"<<endl;
+        cout<<"Se te recargaron + 100 credtios, ahora tienes: "<<creditos<<" creditos"<<endl;
         break;
         default:
         cout<<"No te quieres hacer rico eh ._.";
